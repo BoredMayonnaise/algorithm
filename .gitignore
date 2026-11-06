@@ -1,0 +1,11 @@
+/build/
+*.db
+*.db-*
+__pycache__/
+*.py[cod]
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
