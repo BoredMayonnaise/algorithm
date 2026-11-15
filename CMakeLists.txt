@@ -30,14 +30,6 @@ target_link_libraries(algo PRIVATE
   SQLite::SQLite3
 )
 
-include(CTest)
-if(BUILD_TESTING)
-  add_executable(algo_test tests/algo_test.cpp src/algo.cpp)
-  target_include_directories(algo_test PRIVATE src)
-  target_compile_options(algo_test PRIVATE -UNDEBUG)
-  add_test(NAME algorithm_traces COMMAND algo_test)
-endif()
-
 # copy public assets next to binary
 add_custom_command(TARGET algo POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory

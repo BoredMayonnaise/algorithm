@@ -3,12 +3,7 @@
 Interactive maze building and pathfinding analysis platform.
 
 The classroom UI includes live search/frontier events, pause/step/replay, a reversible demo,
-presentation mode, same-input comparison, and responsive editing. See
-[the implemented UI guide](docs/classroom-ui.md) for controls, timing semantics, and tests.
-
-## Documentation
-
-Start with [docs/README.md](docs/README.md) for the project description, technology stack, API reference, and older improvement proposals. See [docs/classroom-ui.md](docs/classroom-ui.md) for the implemented and verified UI. Hosting remains unverified.
+presentation mode, same-input comparison, and responsive editing.
 
 ## Build (Linux)
 
