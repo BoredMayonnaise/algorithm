@@ -67,7 +67,7 @@ Execution time is a local measurement, not a stable algorithm ranking. Schedulin
 | Assets | HTML/JavaScript, Tailwind CDN, emoji markers | Locally built Tailwind and downloaded/bundled SVG icons |
 | Hosting | Executable accepts `PORT` | Configurable paths and bind address, repeatable Linux deployment, verified host |
 
-The database defines a `runs` table and a `saveRun` method, but the current run and compare routes do not persist their results. Export currently downloads a maze layout, not analytics. There is no verified public deployment or share-link service.
+The database retains an unused `runs` table for schema compatibility; the unused run-saving method was removed. The current run and compare routes do not persist their results. Export currently downloads a maze layout, not analytics. There is no verified public deployment or share-link service.
 
 ## Scope boundaries
 

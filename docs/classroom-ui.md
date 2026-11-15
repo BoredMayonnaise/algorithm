@@ -13,7 +13,7 @@ UI editing entry points:
 - `public/index.html`: sections, controls, labels, and consequence/recovery guidance. Keep control IDs aligned with `app.js` and the structural checks.
 - `public/styles.css`: theme tokens, cell states, workspace layout, presentation mode, and responsive rules. Existing cascade order is retained.
 - `public/app.js`: shared input, two-board rendering, one frame scheduler, request cancellation, controls, and persistence. `algorithmInfo` provides the selected solvers' descriptions and guarantees.
-- `public/analysis.js`: pure maze profiles, comparison baselines, derived metrics, insights, and number formatting. Node tests exercise this code without a DOM or browser.
+- `public/analysis.js`: pure maze profiles, average move costs, and number formatting. Node tests exercise this code without a DOM or browser.
 - `public/playback.js`: pure independent search tracks, trace preflight validation, paired stepping, progress, and recorded replay. It does not render or start its own animation loop.
 - `tests/ui_structure_test.py`: browser-free checks for action hooks, labels, references, and keyboard-entry metadata. These are not interaction tests.
 
@@ -60,8 +60,9 @@ Playback progress counts the actual events consumed across the two traces, not i
 
 The standalone Algorithm comparison section, Compare link, and Compare all action are
 removed. The paired lab retains its two selectors, shared inputs, playback, and per-board
-metrics. The `/api/compare` endpoint and pure analytics helpers remain available to API
-clients and tests; the UI no longer requests the four-algorithm table.
+metrics. The `/api/compare` endpoint remains available to API clients and tests; the UI
+no longer requests the four-algorithm table. Its unused browser analytics helper and
+helper-only tests have been removed.
 
 Live exploration shows expanded nodes as a share of **all open cells**, including disconnected
 areas. This is not a progress estimate or the percentage of reachable cells searched.
@@ -151,8 +152,9 @@ touch drawing/zoom/pan. Viewports include desktop, 360/390 px phones, tablet, an
 
 The logic/analytics pass adds stale-heuristic and malformed-native-input regressions, 80 seeded
 weighted A*/Dijkstra agreement cases, malformed HTTP input/algorithm-selection checks, and
-browser-free analytics checks for weighted tradeoffs, no path, one-cell/ties, immutable inputs,
-tiny costs, zero-cost bars, and inconsistent results. No browser/device tests were run for this pass.
+browser-free checks for maze profiles, average move costs, immutable inputs, and tiny-cost
+formatting. Tests for the removed four-algorithm browser analytics helper were also removed.
+No browser/device tests were run for this pass.
 
 The paired-lab pass adds independent-track/shared-step/replay/no-path/one-cell tests,
 seeded weighted cyclic generation checks, and real HTTP solver traces exercised through the

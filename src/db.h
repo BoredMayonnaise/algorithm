@@ -20,7 +20,6 @@ public:
     std::vector<MazeRow> listMazes();
     bool getMaze(int id, MazeRow& out);
     bool deleteMaze(int id);
-    int saveRun(int mazeId, const std::string& algorithm, const std::string& metricsJson, const std::string& pathJson);
 private:
     sqlite3* db_ = nullptr;
     std::string path_;

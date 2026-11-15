@@ -1,5 +1,4 @@
 #include "db.h"
-#include <cstdio>
 #include <iostream>
 
 DB::DB(const std::string& path) : path_(path) {}
@@ -104,18 +103,4 @@ bool DB::deleteMaze(int id) {
     int rc = sqlite3_step(stmt);
     sqlite3_finalize(stmt);
     return rc == SQLITE_DONE;
-}
-
-int DB::saveRun(int mazeId, const std::string& algorithm, const std::string& metricsJson, const std::string& pathJson) {
-    const char* sql = "INSERT INTO runs (maze_id, algorithm, metrics_json, path_json) VALUES (?,?,?,?);";
-    sqlite3_stmt* stmt = nullptr;
-    if (sqlite3_prepare_v2(db_, sql, -1, &stmt, nullptr) != SQLITE_OK) return -1;
-    if (mazeId > 0) sqlite3_bind_int(stmt, 1, mazeId); else sqlite3_bind_null(stmt, 1);
-    sqlite3_bind_text(stmt, 2, algorithm.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 3, metricsJson.c_str(), -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 4, pathJson.c_str(), -1, SQLITE_TRANSIENT);
-    int rc = sqlite3_step(stmt);
-    sqlite3_finalize(stmt);
-    if (rc != SQLITE_DONE) return -1;
-    return (int)sqlite3_last_insert_rowid(db_);
 }

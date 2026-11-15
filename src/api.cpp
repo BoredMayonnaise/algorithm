@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 #include <filesystem>
-#include <cstdlib>
 #include <random>
 
 using json = nlohmann::json;
@@ -74,12 +73,6 @@ static std::string parseMaze(const json& j, MazeInput& m, std::string& err) {
             if (w[0] < 0 || w[0] >= m.rows || w[1] < 0 || w[1] >= m.cols) continue;
             int r = w[0].get<int>(), c = w[1].get<int>();
             if (inBounds(m, r, c)) m.wall[r][c] = 1;
-        }
-        // costs
-        if (j.contains("costs")) {
-            for (auto& kv : j["costs"].items()) {
-                // "r,c": value
-            }
         }
     } else {
         m.wall.assign(m.rows, std::vector<int>(m.cols, 0));
@@ -197,8 +190,6 @@ static json generateMaze(const json& body, std::string& err) {
         std::vector<std::vector<char>> vis(rows, std::vector<char>(cols, 0));
         std::vector<std::pair<int,int>> st;
         int sr = 0, sc = 0;
-        // ensure odd start
-        if (sr % 2 == 0) {} // ok
         setWall(sr,sc,0);
         vis[sr][sc] = 1;
         st.push_back({sr, sc});
